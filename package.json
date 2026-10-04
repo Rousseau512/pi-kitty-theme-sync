@@ -1,0 +1,31 @@
+{
+	"name": "pi-kitty-theme-sync",
+	"version": "0.1.0",
+	"description": "Pi extension that generates a pi theme from the colors of the current Kitty window.",
+	"keywords": [
+		"pi-package",
+		"pi-extension",
+		"kitty",
+		"theme"
+	],
+	"type": "module",
+	"license": "MIT",
+	"homepage": "https://github.com/Rousseau512/pi-kitty-theme-sync#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Rousseau512/pi-kitty-theme-sync.git"
+	},
+	"files": [
+		"index.ts",
+		"README.md",
+		"LICENSE"
+	],
+	"peerDependencies": {
+		"@earendil-works/pi-coding-agent": "*"
+	},
+	"pi": {
+		"extensions": [
+			"./index.ts"
+		]
+	}
+}
