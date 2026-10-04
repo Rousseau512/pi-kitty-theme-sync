@@ -218,10 +218,14 @@ async function readRemoteKittyColors(
 	pi: ExtensionAPI,
 	configured: boolean,
 ): Promise<KittyColors | null> {
+	const windowId = process.env.KITTY_WINDOW_ID?.trim();
+	// Outside a Kitty window and without Kitty's socket (a multiplexer pane started
+	// elsewhere, a plain SSH session) nothing answers `kitten @`, so every attempt
+	// would only end at its timeout.
+	if (!windowId && !process.env.KITTY_LISTEN_ON?.trim()) return null;
+
 	const args = ["@", "get-colors"];
 	if (configured) args.push("--configured");
-
-	const windowId = process.env.KITTY_WINDOW_ID?.trim();
 	if (windowId) args.push("--match", `id:${windowId}`);
 
 	for (const executable of ["kitten", "kitty"]) {

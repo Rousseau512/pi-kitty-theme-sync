@@ -32,8 +32,10 @@ allow_remote_control socket-only
 listen_on unix:kitty-{kitty_pid}
 ```
 
-If remote control is unavailable, the extension falls back to parsing
-`kitty.conf` and its `include` files (including `current-theme.conf`).
+Remote control is only attempted when `KITTY_LISTEN_ON` or `KITTY_WINDOW_ID` is
+set. Without either (for example in a multiplexer pane started outside Kitty, or
+over plain SSH), or when remote control fails, the extension falls back to
+parsing `kitty.conf` and its `include` files (including `current-theme.conf`).
 
 ## Behavior
 
